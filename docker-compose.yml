@@ -1,13 +1,15 @@
-version: '3.3'
 services:
     app:
-        volumes:
-            - ./credentials:/app/credentials
-            - ./instances:/app/instances
-            - ./logs:/app/logs
-            - ./maps:/app/maps
+        build: 
+            context: .
+            dockerfile: Dockerfile
         environment:
+            - NODE_ENV=production
             - RPP_DISCORD_CLIENT_ID=111....1111
             - RPP_DISCORD_TOKEN=token
         container_name: rpp
-        image: ghcr.io/alexemanuelol/rustplusplus
+        volumes:
+            - ./credentials:/home/node/app/credentials
+            - ./instances:/home/node/app/instances
+            - ./logs:/home/node/app/logs
+            - ./maps:/home/node/app/maps
